@@ -13,6 +13,8 @@ public class Comic {
     private long id;
 
     @Column
+    private String type;
+    @Column
     private String author;
     @Column
     private String title;

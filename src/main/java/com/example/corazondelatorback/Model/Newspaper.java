@@ -13,6 +13,8 @@ public class Newspaper {
     private long id;
 
     @Column
+    private String type;
+    @Column
     private String title;
     @Column
     private String brand;

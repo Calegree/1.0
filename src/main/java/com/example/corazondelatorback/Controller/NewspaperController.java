@@ -4,6 +4,7 @@ import com.example.corazondelatorback.Model.Borrow;
 import com.example.corazondelatorback.Model.Comic;
 import com.example.corazondelatorback.Model.Newspaper;
 import com.example.corazondelatorback.Services.NewspaperService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,9 +38,19 @@ public class NewspaperController {
     }
 
     @PutMapping("/updateNewspaper/{id}")
+    public ResponseEntity<String> updateNewspaper(@PathVariable Long id, @RequestBody Newspaper updatedNewspaper) {
+        try {
+            String result = newspaperService.updateNewspaper(id, updatedNewspaper);
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el periódico");
+        }
+    }
+
+    /*@PutMapping("/updateNewspaper/{id}")
     public String updateNewspaper(@PathVariable Long id, @RequestBody Newspaper updatedNewspaper) {
         return newspaperService.updateNewspaper(id, updatedNewspaper);
-    }
+    }*/
 
 
 }

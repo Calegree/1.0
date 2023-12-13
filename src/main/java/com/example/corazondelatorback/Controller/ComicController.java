@@ -4,6 +4,7 @@ import com.example.corazondelatorback.Model.Borrow;
 import com.example.corazondelatorback.Model.Comic;
 import com.example.corazondelatorback.Services.ComicService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ComicController {
         this.comicService = comicService;
     }
 
-    @PostMapping(value = "/addComic")
+     @PostMapping(value = "/addComic")
         public String addComic(@RequestBody Comic comic){
         return comicService.AddComic(comic);
     }

@@ -39,22 +39,27 @@ public class NewspaperService {
     }
 
     public String updateNewspaper(Long newspaperId, @RequestBody Newspaper updatedNewspaper) {
-        Newspaper existingNewspaper = newspaperRepository.findById(newspaperId)
-                .orElseThrow(() -> new RuntimeException("No se encontró el cómic con id: " + newspaperId));
+        try{
+            Newspaper existingNewspaper = newspaperRepository.findById(newspaperId)
+                    .orElseThrow(() -> new RuntimeException("No se encontró el cómic con id: " + newspaperId));
 
-        // Actualiza los campos necesarios
-        existingNewspaper.setTitle(updatedNewspaper.getTitle());
-        existingNewspaper.setBrand(updatedNewspaper.getBrand());
-        existingNewspaper.setPublicationDate(updatedNewspaper.getPublicationDate());
-        existingNewspaper.setEdition(updatedNewspaper.getEdition());
-        existingNewspaper.setEditor(updatedNewspaper.getEditor());
-        existingNewspaper.setImage(updatedNewspaper.getImage());
-        // ... actualiza otros campos según sea necesario
+            // Actualiza los campos necesarios
+            existingNewspaper.setTitle(updatedNewspaper.getTitle());
+            existingNewspaper.setBrand(updatedNewspaper.getBrand());
+            existingNewspaper.setPublicationDate(updatedNewspaper.getPublicationDate());
+            existingNewspaper.setEdition(updatedNewspaper.getEdition());
+            existingNewspaper.setEditor(updatedNewspaper.getEditor());
+            existingNewspaper.setImage(updatedNewspaper.getImage());
+            // ... actualiza otros campos según sea necesario
 
-        // Guarda los cambios en la base de datos
-        newspaperRepository.save(existingNewspaper);
+            // Guarda los cambios en la base de datos
+            newspaperRepository.save(existingNewspaper);
 
-        return "Comic actualizado";
+            return "Comic actualizado";
+        }catch (Exception e) {
+            throw new RuntimeException("Error al actualizar el periódico", e);
+        }
+
     }
 
 }

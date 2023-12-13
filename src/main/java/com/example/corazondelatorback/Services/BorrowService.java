@@ -51,7 +51,10 @@ private final BorrowRepository borrowRepository;
 
         return "Préstamo marcado como devuelto";
     }
-
+    public String deleteBorrow(Long borrowId) {
+        borrowRepository.deleteById(borrowId);
+        return "borrow eliminado";
+    }
     public String updateBorrow(long id, Borrow updatedBorrow) {
         Borrow existingBorrow = borrowRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("No se encontró la solicitud de préstamo con id: " + id));

@@ -1,11 +1,11 @@
 package com.example.corazondelatorback.Services;
 
-import com.example.corazondelatorback.Model.Borrow;
 import com.example.corazondelatorback.Model.Comic;
 import com.example.corazondelatorback.Repository.ComicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 
@@ -18,8 +18,6 @@ public class ComicService {
     public ComicService(ComicRepository comicRepository){
         this.comicRepository = comicRepository;
     }
-
-
 
     public String AddComic(@RequestBody Comic comic){
         comicRepository.save(comic);
